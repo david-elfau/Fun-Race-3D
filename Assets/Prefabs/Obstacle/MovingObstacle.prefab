@@ -50,7 +50,7 @@ MonoBehaviour:
   - {fileID: 5270011494780304558}
   - {fileID: 5270011493457928433}
   obstacleSpeed: 5
-  inertia: 0.5
+  inertia: 0.8
 --- !u!1 &5270011493457928433
 GameObject:
   m_ObjectHideFlags: 0

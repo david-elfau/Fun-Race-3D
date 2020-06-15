@@ -12,7 +12,7 @@ public class BotController : PlayerController
     bool insideCheckpoint = false;
     public float MaxWaitingTime = 2; 
     private float timeWaiting = 1f;
-    private Vector3 OFFSET_BOT_POSITION = new Vector3(0, 0, 2f);
+    private Vector3 OFFSET_BOT_POSITION = new Vector3(0, 0, 1f);
 
     void FixedUpdate()
     {

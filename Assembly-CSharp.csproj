@@ -64,6 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scrips\BotController.cs" />
+    <Compile Include="Assets\Scrips\CameraTriggerController.cs" />
+    <Compile Include="Assets\Scrips\GameManager.cs" />
     <Compile Include="Assets\Scrips\MovingObstacle.cs" />
     <Compile Include="Assets\Scrips\PlayerController.cs" />
     <None Include="Assets\SimplePeople\Changelog.txt" />
