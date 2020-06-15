@@ -8,6 +8,7 @@ Create a camera system without help of cinemachine cameras.
 
 ## The parts I think I could do better and how:
 Camera swap: I would create a better transition and go back to the original position
+Spacing between chasing obstacle: There is a small window to enter into a burst. With more space between obstacles could be fixed
 
 ## I would do if I could go a step further on this game
 - It could create better obstacles and more variety with more time.
