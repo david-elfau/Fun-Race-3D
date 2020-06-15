@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BotController : PlayerController
 {
-    enum BotStatus { RunOutside, RunOnTrigger, Waiting, GameEnded };
+    enum BotStatus { RunOutside, RunOnTrigger, Waiting };
 
 
     BotStatus status = BotStatus.RunOutside;
@@ -16,21 +16,24 @@ public class BotController : PlayerController
 
     void FixedUpdate()
     {
-        CheckWaitingTime();
-
-        if (status == BotStatus.Waiting || status == BotStatus.GameEnded)
+        if (GameManager.Instance.status == GameManager.RaceStatus.Running)
         {
-            Debug.Log("WAITING");
-            desiredMovingDirection = Vector3.zero;
-        }
-        else
-        {
-            Debug.Log("RUNNING");
-            desiredMovingDirection = Vector3.right * playerSpeed;
-        }
+            CheckWaitingTime();
 
-        movingDirection = desiredMovingDirection * inertia + movingDirection * (1 - inertia);
-        MovePlayer(movingDirection);
+            if (status == BotStatus.Waiting)
+            {
+                Debug.Log("WAITING");
+                desiredMovingDirection = Vector3.zero;
+            }
+            else
+            {
+                Debug.Log("RUNNING");
+                desiredMovingDirection = Vector3.right * playerSpeed;
+            }
+
+            movingDirection = desiredMovingDirection * inertia + movingDirection * (1 - inertia);
+            MovePlayer(movingDirection);
+        }
     }
 
     void Update()
@@ -71,8 +74,7 @@ public class BotController : PlayerController
     }
     private void FinishRace()
     {
-        Debug.Log("YOU LOST");
-        status = BotStatus.GameEnded;
+        GameManager.Instance.BotArrived();
     }
 
     void ResetToCheckPoint()

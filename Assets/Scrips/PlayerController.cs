@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     protected Vector3 desiredMovingDirection;
     protected Vector3 movingDirection;
 
+    private Vector3 OFFSET_PLAYER_POSITION = new Vector3(0, 0, -1f);
+
     bool IsScreenTouched = false;
 
     protected Animator animator;
@@ -46,18 +48,21 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (IsScreenTouched)
+        if (GameManager.Instance.status == GameManager.RaceStatus.Running)
         {
-            desiredMovingDirection = Vector3.right * playerSpeed;
-        }
-        else
-        {
-            desiredMovingDirection = Vector3.zero;
-        }
+            if (IsScreenTouched)
+            {
+                desiredMovingDirection = Vector3.right * playerSpeed;
+            }
+            else
+            {
+                desiredMovingDirection = Vector3.zero;
+            }
 
-        movingDirection = desiredMovingDirection * inertia + movingDirection * (1 - inertia);
+            movingDirection = desiredMovingDirection * inertia + movingDirection * (1 - inertia);
 
-        MovePlayer(movingDirection);
+            MovePlayer(movingDirection);
+        }
     }
 
     protected void MovePlayer(Vector3 direction)
@@ -89,8 +94,9 @@ public class PlayerController : MonoBehaviour
 
     void FinishRace()
     {
-        Debug.Log("FINISH");
+        GameManager.Instance.PlayerArrived();
     }
+        
 
     void Die()
     {
@@ -100,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
     void ResetToCheckPoint()
     {
-        this.transform.position = lastCheckpoint.transform.position; 
+        this.transform.position = lastCheckpoint.transform.position+ OFFSET_PLAYER_POSITION; 
         Debug.Log("Player RESET CHECKPOINT  "+ this.transform.position);
     }
 }

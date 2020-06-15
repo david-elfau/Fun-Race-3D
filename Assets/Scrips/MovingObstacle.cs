@@ -31,6 +31,8 @@ public class MovingObstacle : MonoBehaviour
             if (nextPosition >= path.Length)
                 nextPosition = 0;
 
+            movingDirection = Vector3.zero;
+
             pathRemaining = path[nextPosition].transform.position - obstacle.transform.position;
         }
 
