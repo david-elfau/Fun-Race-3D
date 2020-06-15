@@ -9,18 +9,18 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 1f;
     public float inertia = 0.5f;
 
-    Vector3 desiredMovingDirection;
-    Vector3 movingDirection;
+    protected Vector3 desiredMovingDirection;
+    protected Vector3 movingDirection;
 
-    public bool IsScreenTouched = false;
+    bool IsScreenTouched = false;
 
-    public Animator animator;
-    private Rigidbody rigidBody;
+    protected Animator animator;
+    protected Rigidbody rigidBody;
 
-    private GameObject lastCheckpoint;
+    protected GameObject lastCheckpoint;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         rigidBody = this.GetComponent<Rigidbody>();
         animator = this.GetComponent<Animator>();
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     }
     
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         if (IsScreenTouched)
         {
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         MovePlayer(movingDirection);
     }
 
-    void MovePlayer(Vector3 direction)
+    protected void MovePlayer(Vector3 direction)
     {
         rigidBody.MovePosition(transform.position + direction * Time.fixedDeltaTime);
         this.transform.LookAt(transform.position + movingDirection);
@@ -81,26 +81,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SaveCheckpoint(GameObject gameObject)
+    protected void SaveCheckpoint(GameObject gameObject)
     {
         lastCheckpoint = gameObject;
         Debug.Log("CROSS CHECKPOINT");
     }
 
-    private void FinishRace()
+    void FinishRace()
     {
         Debug.Log("FINISH");
     }
 
-    private void Die()
+    void Die()
     {
         Debug.Log("DIE");
         ResetToCheckPoint();
     }
 
-    private void ResetToCheckPoint()
+    void ResetToCheckPoint()
     {
         this.transform.position = lastCheckpoint.transform.position; 
-        Debug.Log("RESET CHECKPOINT");
+        Debug.Log("Player RESET CHECKPOINT  "+ this.transform.position);
     }
 }

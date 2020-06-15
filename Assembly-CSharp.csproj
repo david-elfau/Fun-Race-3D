@@ -63,6 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scrips\BotController.cs" />
+    <Compile Include="Assets\Scrips\MovingObstacle.cs" />
     <Compile Include="Assets\Scrips\PlayerController.cs" />
     <None Include="Assets\SimplePeople\Changelog.txt" />
     <Reference Include="Unity.Timeline.Editor">
